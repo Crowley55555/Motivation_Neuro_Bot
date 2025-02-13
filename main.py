@@ -13,7 +13,7 @@ send_messages = set()
 
 # Обработчик команды /start
 @bot.message_handler(commands=['start'])
-def start_message(message):
+def start_message(message):#создаем функцию "Старт"
     user_name = message.from_user.first_name
     # Создаем клавиатуру с кнопкой "Получить мотивашку"
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
@@ -22,7 +22,7 @@ def start_message(message):
 
     # Отправляем приветственное сообщение с кнопкой
     bot.reply_to(message, f'Привет, {user_name}! Я чат-бот, который будет напоминать тебе, что можно жить лучше!',
-                 reply_markup=markup)
+                 reply_markup=markup)#открываем клавиатуру в конце каждого ответа
 
     # Запуск потока для напоминаний
 
