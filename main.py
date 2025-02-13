@@ -26,14 +26,16 @@ def start_message(message):#создаем функцию "Старт"
 
     # Запуск потока для напоминаний
 
-    def send_reminders(chat_id):
+    def send_reminders(chat_id):#создаем функцию напоминаний 
         first_rem = "08:30"
-        second_rem = "12:00"
-        end_rem = "21:40"
+        second_rem = "12:00" 
+        end_rem = "21:40" 
 
-        with open("motivaxa.txt", encoding="utf-8") as file:
+# Открываем файл txt с мотивашкой с условием закрытия после использования и в стандарте utf-8
+        with open("motivaxa.txt", encoding="utf-8") as file: 
             list1 = [line.strip() for line in file if line.strip()]
 
+#задаем задачу рассылать напоминание если фактическое время совпадает с заданным
         while True:
             now = datetime.datetime.now().strftime("%H:%M")
             if now == first_rem:
@@ -74,7 +76,7 @@ def start_bot(message):
     bot.send_message(message.chat.id, "Бот запущен!", reply_markup=markup)
     bot.send_message(message.chat.id, "Выберите действие:")
 
-
+#создаем функцию получения рандомной мотивашки из файла. txt
 @bot.message_handler(commands=['fact'])
 def fact_message(message):
     user_name = message.from_user.first_name
@@ -86,8 +88,8 @@ def fact_message(message):
         list = [line.strip() for line in file if line.strip()]
         random_fact = random.choice(list)
         bot.reply_to(message, f'{user_name} , {random_fact}', reply_markup=markup)
-        send_messages.add(random_fact)
-
+        send_messages.add(random_fact) 
+#функция reply_makup=markup - открывает клавиатуру внизу экрана чтоб она не пропала
 
 @bot.message_handler(content_types=['text'])
 def handle_text(message):
